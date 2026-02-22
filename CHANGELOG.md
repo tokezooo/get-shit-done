@@ -8,12 +8,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [1.20.5] - 2026-02-19
 
+### Added
+- Native Codex runtime support in installer via `--codex` and `--all` (Codex included), with config resolution precedence: `--config-dir` → `CODEX_HOME` → `~/.codex`
+- Skills-first Codex installation path that transpiles GSD commands to `skills/gsd-*/SKILL.md` (no custom-prompt dependency)
+- Codex-specific install/uninstall + manifest support for skill layout tracking and cleanup
+
 ### Fixed
 - `/gsd:health --repair` now creates timestamped backup before regenerating STATE.md (#657)
 
 ### Changed
 - Subagents now discover and load project CLAUDE.md and skills at spawn time for better project context (#671, #672)
 - Improved context loading reliability in spawned agents
+- Codex-installed content rewrites slash-command references to skill mentions (`/gsd:*` → `$gsd-*`) and normalizes command arguments (`$ARGUMENTS` → `{{GSD_ARGS}}`)
+- README/package metadata updated to document Codex install, invocation (`$gsd-help`), and uninstall flow
 
 ## [1.20.4] - 2026-02-17
 
